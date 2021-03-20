@@ -5,16 +5,19 @@ module alu(
     input [2:0] portA,
     input [2:0] portB,
     input [1:0] opcode,
-    output [0:6] sseg,
-    output [3:0] an,
+    //output [0:6] sseg,
+    //output [3:0] an,
     input clk,
-    input rst
+    input rst,
+    
+    
+    output reg [5:0] sal_f
  );
 
 // Declaración de salidas de cada bloque 
-wire [3:0] sal_suma;
-wire [3:0] sal_resta;
-wire [3:0] sal_div;
+wire [5:0] sal_suma;
+wire [5:0] sal_resta;
+wire [5:0] sal_div;
 wire [5:0] sal_mult;
 
 
@@ -25,6 +28,9 @@ wire init_resta;
 wire init_mult;
 wire init_div;
 
+
+
+wire done;
 // 
 
 assign init_suma= init[0];
@@ -32,23 +38,38 @@ assign init_resta=init[1];
 assign init_mult=init[2];
 assign init_div=init[3];
 
-reg [15:0]int_bcd;
 
-wire [3:0] operacion;
+//wire [3:0] operacion;
 
 // descripción del decodificacion de operaciones
 always @(*) begin
 	case(opcode) 
-		2'b00: init<=1;
-		2'b01: init<=2;
-		2'b10: init<=4;
-		2'b11: init<=8;
+		2'b00: init<=4'b0001;
+		2'b01: init<=4'b0010;
+		2'b10: init<=4'b0100;
+		2'b11: init<=4'b1000;
 	default:
 		init <= 0;
 	endcase
 	
 end
+
+//ELegir la salida para el display
+always @(*) begin
+	case(opcode) 
+		2'b00: sal_f<=sal_suma;
+		2'b01: sal_f<=sal_resta;
+		2'b10: if (done) sal_f<=sal_mult;
+		2'b11: sal_f<=sal_div;
+	default:
+		sal_f<= 0;
+	endcase
+	
+end
+
+
 // Descripcion del miltiplexor
+/*
 always @(*) begin
 	case(opcode) 
 		2'b00: int_bcd <={8'b00,sal_suma};
@@ -60,13 +81,13 @@ always @(*) begin
 	endcase
 	
 end
+*/
 
+//instanciación de los componnetoperaciones 
 
-//instanciación de los componnetes 
-
-sum4b sum(. init(init_suma),.xi({1'b0,portA}), .yi({1'b0,portB}),.sal(sal_suma));
-multiplicador mul ( .MR(portA), .MD(portB), .init(init_mult),.clk(clk), .pp(sal_mult));
-display dp( .num(int_bcd), .clk(clk), .sseg(sseg), .an(an), .rst(rst));
+sum4b sum(.clk(clk), .init(init_suma), .xi(portA), .yi(portB),.sal(sal_suma));
+multiplicador mul (.clk(clk), .init(init_mult), .MR(portA), .MD(portB), .pp(sal_mult), .done(done));
+// BCDtoSSeg dp( .num(int_bcd), .clk(clk), .sseg(sseg), .an(an), .rst(rst));
 
 // adicone los dos bloques que hacen flata la resta y división
 
