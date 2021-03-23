@@ -14,14 +14,14 @@ module alu(
     output reg [5:0] sal_f
  );
 
-// Declaración de salidas de cada bloque 
+// Declaraciï¿½n de salidas de cada bloque 
 wire [5:0] sal_suma;
 wire [5:0] sal_resta;
 wire [5:0] sal_div;
 wire [5:0] sal_mult;
 
 
-// Declaración de las entradas init de cada bloque 
+// Declaraciï¿½n de las entradas init de cada bloque 
 reg [3:0] init; 
 wire init_suma;
 wire init_resta;
@@ -30,7 +30,6 @@ wire init_div;
 
 
 
-wire done;
 // 
 
 assign init_suma= init[0];
@@ -41,8 +40,8 @@ assign init_div=init[3];
 
 //wire [3:0] operacion;
 
-// descripción del decodificacion de operaciones
-always @(*) begin
+// descripciï¿½n del decodificacion de operaciones
+always @(posedge clk) begin
 	case(opcode) 
 		2'b00: init<=4'b0001;
 		2'b01: init<=4'b0010;
@@ -55,11 +54,11 @@ always @(*) begin
 end
 
 //ELegir la salida para el display
-always @(*) begin
+always @(posedge clk) begin
 	case(opcode) 
 		2'b00: sal_f<=sal_suma;
 		2'b01: sal_f<=sal_resta;
-		2'b10: if (done) sal_f<=sal_mult;
+		2'b10: sal_f<=sal_mult;
 		2'b11: sal_f<=sal_div;
 	default:
 		sal_f<= 0;
@@ -83,13 +82,14 @@ always @(*) begin
 end
 */
 
-//instanciación de los componnetoperaciones 
+//instanciaciï¿½n de los componnetoperaciones 
 
 sum4b sum(.clk(clk), .init(init_suma), .xi(portA), .yi(portB),.sal(sal_suma));
-multiplicador mul (.clk(clk), .init(init_mult), .MR(portA), .MD(portB), .pp(sal_mult), .done(done));
-// BCDtoSSeg dp( .num(int_bcd), .clk(clk), .sseg(sseg), .an(an), .rst(rst));
+Resta rest(.clk(clk), .init(init_resta), .xi(portA), .yi(portB),.sal(sal_resta));
+multiplicador mul (.clk(clk), .init(init_mult), .MR(portA), .MD(portB), .pp(sal_mult), .reset(rst));
+Divisor div (.clk(clk), .init(init_div), .MR(portB), .MD(portA), .C(sal_div), .reset(rst));
 
-// adicone los dos bloques que hacen flata la resta y división
+// adicone los dos bloques que hacen flata la resta y divisiï¿½n
 
 
 

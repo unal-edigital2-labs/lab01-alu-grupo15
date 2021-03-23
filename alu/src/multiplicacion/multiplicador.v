@@ -22,12 +22,13 @@ module multiplicador(        input clk,
                              input init, 
                              input [2:0] MR, 
 							 input [2:0] MD, 
-							 
+							 input reset,
 							  
-							 output reg [5:0] pp, 
-							 output reg done
+							 output reg [5:0] pp
+						//	 output reg done
     );
 
+reg done;
 reg sh;
 reg rst;
 reg add;
@@ -42,7 +43,7 @@ assign z=(B==0)?1:0;
 
 
 //bloques de registros de desplazamiento para A y B
-always @(posedge clk) begin
+always @(negedge clk) begin
    
 	if (rst) begin
 		A = {3'b000,MD};
@@ -58,7 +59,7 @@ always @(posedge clk) begin
 end 
 
 //bloque de add pp
-always @(posedge clk) begin
+always @(negedge clk) begin
    
 	if (rst) begin
 		pp =0;
@@ -79,7 +80,7 @@ always @(posedge clk) begin
 	START: begin
 		sh=0;
 		add=0;
-		if (init) begin
+		if (init && reset) begin
 			status=CHECK;
 			done =0;
 			rst=1;

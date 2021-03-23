@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module resta(clk, init, xi, yi, sal);
+module Resta(clk, init, xi, yi, sal);
 
   input clk;
   input init;
@@ -28,11 +28,13 @@ module resta(clk, init, xi, yi, sal);
   input [2:0] yi;
   output reg [5:0] sal;
   
-  assign yi = ~yi;
+  wire [2:0] yi_comp;
+  
+  assign yi_comp = ~yi+1;
   
   
 always @(posedge clk) begin
-    if(init) sal = xi+yi;
+    if(init) sal = xi+yi_comp;
     else sal=0;
 end
 endmodule

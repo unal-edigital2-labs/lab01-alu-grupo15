@@ -22,49 +22,55 @@ module Divisor(              input clk,
                              input init, 
                              input [2:0] MR, 
 							 input [2:0] MD, 
-							 
+							 input reset,
 							  
-							 output reg [5:0] pp, 
-							 output reg done
+							 output reg [5:0] C
+							 //output reg done
     );
 
+reg done;
 reg sh;
 reg rst;
 reg add;
+reg fill;
 reg [5:0] A;
 reg [2:0] B;
-reg [3:0] C;
+
 reg [1:0] count;
 
 wire z;
 
 reg [2:0] status = 0;
 
+//bloque para asignar la salida
+
+
 // bloque comparador 
 assign z=(B==0)?1:0;
 
 
 //bloques de registros de desplazamiento para A y B
-always @(posedge clk) begin
+always @(negedge clk) begin
    
 	if (rst) begin
 		A = {3'b000,MD};
-		B = ~MR;
+		B = ~MR + 1;
 		count = 3;
 	end
 	else begin 
             if (sh) begin
                 A = A << 1;
+                count = count-1;
             end
     end
 
 end 
 
 //bloque de add pp
-always @(posedge clk) begin
+always @(negedge clk) begin
    
 	if (rst) begin
-		pp =0;
+		C =0;
 	end
 	else begin 
             if (add) begin
@@ -74,16 +80,26 @@ always @(posedge clk) begin
 
 end
 
+//bloque de rellenar con 1
+always @(negedge clk) begin
+   
+	if (fill) begin
+		A[0]= 1'b1;
+	end
+
+end
+
 // FSM 
-parameter START =0, CHECK =1, ADD =2, SHIFT =3, END1 =4, CHECKCOUNT=5;
+parameter START =0, CHECK =1, ADD =2, SHIFT =3, END1 =4, CHECKCOUNT=5, FILLONE=6;
 
 always @(posedge clk) begin
 	case (status)
 	START: begin
 		sh=0;
 		add=0;
-		if (init) begin
-			status=CHECK;
+		fill=0;
+		if (init && reset) begin
+			status=SHIFT;
 			done =0;
 			rst=1;
 		end
@@ -93,28 +109,28 @@ always @(posedge clk) begin
 		rst=0;
 		sh=0;
 		add=0;
+		fill=0;
 		if (C[3]==1)
-			status=ADD;
+			status=FILLONE;
 		else
-			status=SHIFT;
+			status=CHECKCOUNT;
 		end
 	ADD: begin
 		done=0;
 		rst=0;
 		sh=0;
 		add=1;
-		status=SHIFT;
+		fill=0;
+		status=CHECK;
 		end
 	SHIFT: begin
 		done=0;
 		rst=0;
 		sh=1;
 		add=0;
-		if (z==1)
-			status=END1;
-		else
-			status=CHECK;
-		end
+		fill=0;
+		status=ADD;
+        end
 		
 		
     CHECKCOUNT: begin 
@@ -122,19 +138,28 @@ always @(posedge clk) begin
         rst=0;
         sh=0;
         add=0;
-        if (C[3]==1)
-            status=ADD;
+        fill=0;
+        if (count == 0)
+            status=END1;
         else
             status=SHIFT;
-    end
-		
-		
+        end
+        
+	FILLONE: begin 
+        done=0;
+        rst=0;
+        sh=0;
+        add=0;
+        fill=1;
+        status=CHECKCOUNT;
+		end
 		
 	END1: begin
 		done =1;
 		rst =0;
 		sh =0;
 		add =0;
+		fill=0;
 		status =START;
 	end
 	 default:
