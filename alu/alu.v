@@ -11,10 +11,15 @@ module alu(
     input rst,
     
     
-    output reg [5:0] sal_f
+    output [3:0] An,
+    output [6:0] Sseg,
+    output [5:0] sal_leds
  );
 
+
+
 // Declaraci�n de salidas de cada bloque 
+reg [5:0] sal_f;
 wire [5:0] sal_suma;
 wire [5:0] sal_resta;
 wire [5:0] sal_div;
@@ -30,6 +35,7 @@ wire init_div;
 
 
 
+assign sal_leds = sal_f;
 // 
 
 assign init_suma= init[0];
@@ -88,6 +94,7 @@ sum4b sum(.clk(clk), .init(init_suma), .xi(portA), .yi(portB),.sal(sal_suma));
 Resta rest(.clk(clk), .init(init_resta), .xi(portA), .yi(portB),.sal(sal_resta));
 multiplicador mul (.clk(clk), .init(init_mult), .MR(portA), .MD(portB), .pp(sal_mult), .reset(rst));
 Divisor div (.clk(clk), .init(init_div), .MR(portB), .MD(portA), .C(sal_div), .reset(rst));
+Visualizacion view(.Clock(clk), .Reset(!rst), .PortA(portA) , .PortB(portB) , .Result(sal_f), .An(An), .Sseg(Sseg) );
 
 // adicone los dos bloques que hacen flata la resta y divisi�n
 
