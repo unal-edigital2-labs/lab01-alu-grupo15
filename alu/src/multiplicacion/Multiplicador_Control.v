@@ -45,9 +45,9 @@ always @(posedge Clock) begin
 				else Status=CHECK;
 			END: begin
 				Control=3'b000;
-				Status =START;
+				Status =WAIT;
 			end
-	 		default:Status =START;
+	 		default:Status =WAIT;
 		endcase
 	end
 	else begin
