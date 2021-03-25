@@ -12,7 +12,7 @@ output wire [6:0] Sseg;
 wire ClockA;
 wire [3:0] BCD;
 
-DivF DivisorFrecuencia (Clock, Reset, 26'd25_000, ClockA);
+DivF DivisorFrecuencia (Clock, Reset, 26'd50_000, ClockA);
 Conversor BCD2Sseg(ClockA, Reset, BCD, Sseg);
 Control(ClockA, Reset, PortA, PortB, Result, BCD, An);
 
