@@ -7,7 +7,7 @@ input wire [2:0] PortB;
 input wire [5:0] Result;
 
 output reg [3:0] BCD;
-output reg [3:0] An;
+output reg [7:0] An;
 
 reg [1:0] Contador;
 
@@ -23,27 +23,27 @@ if(Reset==1)begin
 	case(Contador)
 		2'b00:begin
 			BCD={1'b0,PortA};
-			An=4'b0111;
+			An=8'b11110111;
 		end
 		
 		2'b01:begin
 			BCD={1'b0,PortB};
-			An=4'b1011;
+			An=8'b11111011;
 		end
 		
 		2'b10:begin
 			BCD={2'b00,Result[5:4]};
-			An=4'b1101;
+			An=8'b11111101;
 		end
 		
 		2'b11:begin
 			BCD=Result[3:0];
-			An=4'b1110;
+			An=8'b11111110;
 		end
 		
 		default:begin
 			BCD=4'b0000;
-			An=4'b0000;
+			An=8'b11110000;
 		end
 	endcase
 

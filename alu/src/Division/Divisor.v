@@ -24,7 +24,7 @@ module Divisor(              input clk,
 							 input [2:0] MD, 
 							 input reset,
 							  
-							 output reg [5:0] C
+							 output reg [5:0] A
 							 //output reg done
     );
 
@@ -34,7 +34,7 @@ reg rst;
 reg add;
 reg fill;
 reg assigna;
-reg [5:0] A;
+reg [5:0] C;
 reg [2:0] B;
 
 reg [1:0] count;
@@ -63,6 +63,16 @@ always @(negedge clk) begin
                 A = A << 1;
                 count = count-1;
             end
+            else begin          
+                if(assigna)
+                    A[5:3]=C[2:0];          
+                else begin
+                    if (fill) 
+                        A[0]= 1'b1;
+                    else if(done)
+                        A[5:3]=3'b000;
+                end
+            end
     end
 
 end 
@@ -73,27 +83,17 @@ always @(negedge clk) begin
 	if (rst) begin
 		C =0;
 	end
-	else begin 
-            if (add) begin
-            C = A[5:3] + B;
-            end
-	end
+	else begin
+        if (add) 
+         C = A[5:3] + B;
+    end
+	
+ end
 
-end
+
 
 //bloque para actualizar A
-always @(negedge clk) begin
-   
-	if (fill) begin
-		A[0]= 1'b1;
-	end
-    else begin
-        if(assigna)begin
-             A[5:3]=C[2:0];
-        end
-    end
-    
-end
+
 
 // FSM 
 parameter START =0, CHECK =1, ADD =2, SHIFT =3, END1 =4, CHECKCOUNT=5, FILLONE=6, ASSIGNA=7;

@@ -26,15 +26,19 @@ module Resta(clk, init, xi, yi, sal);
   input init;
   input [2:0] xi;
   input [2:0] yi;
-  output reg [5:0] sal;
+  output [5:0] sal;
   
+  reg [2:0] resultado;
   wire [2:0] yi_comp;
   
   assign yi_comp = ~yi+1;
-  
+  assign sal = {3'b000,resultado};
   
 always @(posedge clk) begin
-    if(init) sal = xi+yi_comp;
-    else sal=0;
+    if(xi >= yi )begin
+        if(init) resultado = xi+yi_comp;
+        else resultado=0;
+    end
+    else resultado = 0;
 end
 endmodule
