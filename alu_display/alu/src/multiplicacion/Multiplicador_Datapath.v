@@ -30,6 +30,8 @@ assign LSBB = MB[0];
 always @(negedge Clock) begin
 
     if(Reset==1)begin
+		  if(Done==1)Result=PP;
+	 
         if(Control==3'b100)begin //Load
             MA={3'b000,A};
             MB=B;
@@ -40,7 +42,6 @@ always @(negedge Clock) begin
             MA=MA << 1'b1;
             MB=MB >> 1'b1;           
         end
-        if(Done==1)Result=PP;
     end
     else begin
         Result=1'b0;

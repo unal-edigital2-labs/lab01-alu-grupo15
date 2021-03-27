@@ -4,7 +4,7 @@ input wire Clock;
 input wire Reset;
 input wire [2:0] A;
 input wire [2:0] B;
-input wire [2:0] Control;
+input wire [3:0] Control;
 
 output reg [2:0] Result;
 output wire Comp;
@@ -31,21 +31,26 @@ assign Comp = (Cociente<MB)?1'b1:1'b0;
 always @(negedge Clock) begin
 
     if(Reset==1)begin
-        if(Control==3'b100)begin //Load
+        
+        if(Control==4'b1000)begin //Load
             DP=A;
             MB=B;
             Cociente=1'b0;
             Cuenta=2'd3;
         end
-        if(Control==3'b010)begin
+				
+		if(Control==4'b0100) begin
             {Cociente,DP}={Cociente,DP} << 1'b1;
             Cuenta=Cuenta-1'b1;
-        end 
-        if(Control==3'b001)begin
+        end
+        
+		if(Control==4'b0010)begin
             Cociente=Cociente-MB;
             DP[0]=1'b1; 
-        end
-        if(Done==1)Result=DP;
+        end	
+        if(Control==4'b0001)if(Done==1)Result=DP;
+
+
     end
     else begin
         Result=1'b0;

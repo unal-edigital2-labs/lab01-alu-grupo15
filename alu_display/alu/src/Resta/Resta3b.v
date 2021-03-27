@@ -24,7 +24,10 @@ always @(posedge Clock) begin
         OutRest=A+Balt;
 		  OutRest[3]=1'b0;
       end
-      else OutRest[3]=1'b1;
+      else begin
+		OutRest=1'b0;
+		OutRest[3]=1'b1;
+		end
     end
     else OutRest=1'b0;
 

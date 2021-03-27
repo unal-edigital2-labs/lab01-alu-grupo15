@@ -8,7 +8,7 @@ input wire [2:0] B;
 output wire [2:0] Result;
 
 wire Comp;
-wire [3:0] Control;
+wire [2:0] Control;
 wire Done;
 
 Divisor_Control DC (Clock, Reset, Init, Comp, Done, Control);

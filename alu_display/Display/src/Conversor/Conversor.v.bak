@@ -11,7 +11,7 @@ initial begin
 end
 
 
-always @(negedge ClockA)begin
+always @(posedge ClockA)begin
 
 if(Reset==1)begin
 	case(BCD)
