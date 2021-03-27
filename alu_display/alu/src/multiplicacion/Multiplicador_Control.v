@@ -1,10 +1,11 @@
-module Multiplicador_Control(Clock, Reset, Init, LSBB, Done, Control);
+module Multiplicador_Control(Clock, Reset, Init, LSBB, Done, Error, Control);
 
 input wire Clock;
 input wire Reset;
 input wire Init;
 input wire LSBB;
 input wire Done;
+input wire Error;
 output reg [2:0] Control; //Control -> {Load, Add, Shift}
 reg [2:0] Status;
 
@@ -21,6 +22,8 @@ localparam WAIT=0, CHECK =1, ADD=2, SHIFT=3, END=4;
 
 always @(posedge Clock) begin
 	if(Reset==1)begin
+
+		if(Error==1)Status=WAIT;
 
 		case (Status)
 			WAIT: begin

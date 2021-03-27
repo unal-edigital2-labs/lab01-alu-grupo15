@@ -1,10 +1,11 @@
-module Divisor_Control(Clock, Reset, Init, Comp, Done, Control);
+module Divisor_Control(Clock, Reset, Init, Comp, Done, Error, Control);
 
 input wire Clock;
 input wire Reset;
 input wire Init;
 input wire Comp;
 input wire Done;
+input wire Error;
 output reg [3:0] Control; //Control -> {Load, Shift_Dec, Rest}
 reg [3:0] Status;
 
@@ -21,6 +22,8 @@ localparam WAIT=0, SHIFT_DEC =1, CHECK=2, REST=3, CHECKEND=4, END=5;
 
 always @(posedge Clock) begin
 	if(Reset==1)begin
+
+		if(Error==1)Status=WAIT;
 
 		case (Status)
 			WAIT: begin

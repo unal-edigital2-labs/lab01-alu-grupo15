@@ -4,7 +4,7 @@ input wire Clock;
 input wire Reset;
 input wire [2:0] PortA;
 input wire [2:0] PortB;
-input wire [5:0] Result;
+input wire [2:0] Result;
 
 output wire [3:0] An;
 output wire [6:0] Sseg;
