@@ -53,5 +53,5 @@ El diagrama estructural, se soporta en los componentes desarrollados en los ante
 7. implementar el sistema completo en la FPGA remota
 8. hacer la documentación respectiva en el archivo README
   
-
+## Explicación del Código
  
