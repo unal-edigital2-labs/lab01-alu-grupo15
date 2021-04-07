@@ -58,13 +58,23 @@ El diagrama estructural, se soporta en los componentes desarrollados en los ante
 DIVISOR
 
  Para la realización del divisor usamos 5 entradas y una salida, entre las entradas se encuentra MR y MD, divisor y dividendo respectivamente cada uno de 3 bits, tenemos “init” que indicará cuando se inicia la operación, “clk” que permitirá que la ALU en conjunto con las operaciones sea síncrona  y “reset” que permitirá reinicializar las variables, finalmente cómo salida tenemos el registro A que nos guardará el resultado de la operación, esta salida es de 6 bits. 
-A continuación, indicamos los registros y los Wire que se usarán en la implementación. 
 
 ![Dentradas](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/bbfb6db646bba67def21a0b0966fa9ab20d460bc/fig/Dentradas.PNG)
 
+A continuación, indicamos los registros y los Wire que se usarán en la implementación. 
+
+![Dreg](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dreg.PNG)
+
 Antes de realizar la máquina de estados generamos los bloques de comparación, desplazamiento de los registros A y B, para esto si “rst” es 1, A toma el valor de 3 bits en 0 concatenados con el valor de MD, por otra parte se obtiene el complemento a 2 de B y se le asigna a “count” un valor de 3 ya que este indicara el final de la operación.  Finalmente se genera el bloque add. 
 
+![Dbloques](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dbloques.PNG)
+![Dbloques2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dbloques2.PNG)
+
 Finalmente se da inicio a la máquina de estados finitos, que cuenta con 8 estados, la maquina de estados finitos se construyó haciendo uso de casos. 
+
+![DFSM1](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/DFSM1.PNG)
+![DFSM2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/DFSM2.PNG)
+![FSM3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/FSM3.PNG)
 
 MÚLTIPLICADOR
  
