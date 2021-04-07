@@ -90,12 +90,13 @@ RESTA
 
 En el caso de la resta usamos 4 entradas y una salida, al igual que en el divisor tendremos dos entradas de dos bits que son los números que deseamos operar y una salida de 6 bits donde se registrará el resultado de la operación.  A continuación, se inicializa el registro y el wire que se usaran. 
 
-![RESTAQ](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/RESTAQ.PNG)
+![RESTAQ](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/829c191320d249b796586f4d8f6e28bb38bb4ddb/fig/RESTAQ.PNG)
+        
 
 Se trabaja en este caso con el complemento a 2 de yi que es el sustraendo, teniendo en cuenta que el resultado de una resta debe ser siempre inferior o igual a número de bits de las entradas, por esta razón en nuestra salida, concatenamos el resultado con 3 bits que se encuentran en 0. 
 
-![RESTA2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/RESTA2.PNG)
+![RESTA2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/829c191320d249b796586f4d8f6e28bb38bb4ddb/fig/RESTA2.PNG)
 
 Finalmente se debe aclarar que nuestra resta esta limitada para que únicamente se pueda realizar si el minuendo es mayor que el sustraendo de manera que no se de cómo resultado un número negativo. 
 
-![RESTA3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/RESTA3.PNG)
+![RESTA3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/829c191320d249b796586f4d8f6e28bb38bb4ddb/fig/RESTA3.PNG)
