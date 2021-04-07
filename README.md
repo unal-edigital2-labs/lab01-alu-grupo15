@@ -54,4 +54,22 @@ El diagrama estructural, se soporta en los componentes desarrollados en los ante
 8. hacer la documentación respectiva en el archivo README
   
 ## Explicación del Código
+ ##DIVISOR
+ Para la realización del divisor usamos 5 entradas y una salida, entre las entradas se encuentra MR y MD, divisor y dividendo respectivamente cada uno de 3 bits, tenemos “init” que indicará cuando se inicia la operación, “clk” que permitirá que la ALU en conjunto con las operaciones sea síncrona  y “reset” que permitirá reinicializar las variables, finalmente cómo salida tenemos el registro A que nos guardará el resultado de la operación, esta salida es de 6 bits. 
+A continuación, indicamos los registros y los Wire que se usarán en la implementación. 
+
+Antes de realizar la máquina de estados generamos los bloques de comparación, desplazamiento de los registros A y B, para esto si “rst” es 1, A toma el valor de 3 bits en 0 concatenados con el valor de MD, por otra parte se obtiene el complemento a 2 de B y se le asigna a “count” un valor de 3 ya que este indicara el final de la operación.  Finalmente se genera el bloque add. 
+
+Finalmente se da inicio a la máquina de estados finitos, que cuenta con 8 estados, la maquina de estados finitos se construyó haciendo uso de casos. 
+
+ ##MÚLTIPLICADOR
  
+ ##SUMA
+ La suma es la operación más sencilla de la ALU, cómo en las otras se manejan 4 entradas y una salida, las entradas de 3 bits y la salida 6 bits.  En el posedge del clk una vez se indique mediante “init” que se va a operar una suma la salida toma el valor de la adición entre Xi y Yi. 
+ 
+ ##RESTA
+En el caso de la resta usamos 4 entradas y una salida, al igual que en el divisor tendremos dos entradas de dos bits que son los números que deseamos operar y una salida de 6 bits donde se registrará el resultado de la operación.  A continuación, se inicializa el registro y el wire que se usaran. 
+
+Se trabaja en este caso con el complemento a 2 de yi que es el sustraendo, teniendo en cuenta que el resultado de una resta debe ser siempre inferior o igual a número de bits de las entradas, por esta razón en nuestra salida, concatenamos el resultado con 3 bits que se encuentran en 0. 
+
+Finalmente se debe aclarar que nuestra resta esta limitada para que únicamente se pueda realizar si el minuendo es mayor que el sustraendo de manera que no se de cómo resultado un número negativo. 
