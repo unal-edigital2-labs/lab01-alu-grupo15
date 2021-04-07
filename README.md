@@ -68,12 +68,15 @@ A continuación, indicamos los registros y los Wire que se usarán en la impleme
 Antes de realizar la máquina de estados generamos los bloques de comparación, desplazamiento de los registros A y B, para esto si “rst” es 1, A toma el valor de 3 bits en 0 concatenados con el valor de MD, por otra parte se obtiene el complemento a 2 de B y se le asigna a “count” un valor de 3 ya que este indicara el final de la operación.  Finalmente se genera el bloque add. 
 
 ![Dbloques](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dbloques.PNG)
+
 ![Dbloques2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dbloques2.PNG)
 
 Finalmente se da inicio a la máquina de estados finitos, que cuenta con 8 estados, la maquina de estados finitos se construyó haciendo uso de casos. 
 
 ![DFSM1](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/DFSM1.PNG)
+
 ![DFSM2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/DFSM2.PNG)
+
 ![FSM3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/FSM3.PNG)
 
 MÚLTIPLICADOR
