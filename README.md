@@ -84,6 +84,8 @@ MÚLTIPLICADOR
 SUMA
 
  La suma es la operación más sencilla de la ALU, cómo en las otras se manejan 4 entradas y una salida, las entradas de 3 bits y la salida 6 bits.  En el posedge del clk una vez se indique mediante “init” que se va a operar una suma la salida toma el valor de la adición entre Xi y Yi. 
+ ![SUMA](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/7e92c211bced7ca8bc1c58deeff983fb2eb8ad16/fig/SUMA.PNG)
+
  
  
 RESTA
