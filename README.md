@@ -86,7 +86,7 @@ MÚLTIPLICADOR
  ![MULTI1](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI1.PNG)
  
 
-Realizamos el bloque comparador y posteriormente el bloque de desplazamiento encargado de dos cosas, la primera es asignarle a A la concatenación de 3 bits más MD con el objetivo de que al finalizar, el resultado de la operación cuente con 6 bits. En segundo lugar, el bloque debe mover A un bit hacia la izquierda y de mover B a la derecha cuando sea necesario. 
+Realizamos el bloque de desplazamiento encargado de dos cosas, la primera es asignarle a A la concatenación de 3 bits más MD con el objetivo de que al finalizar, el resultado de la operación cuente con 6 bits. En segundo lugar, el bloque debe mover A un bit hacia la izquierda y de mover B a la derecha cuando sea necesario. 
 
  ![MULTI2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI2.PNG)
 
