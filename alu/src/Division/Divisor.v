@@ -38,16 +38,7 @@ reg [5:0] C;
 reg [2:0] B;
 
 reg [1:0] count;
-
-wire z;
-
 reg [2:0] status = 0;
-
-//bloque para asignar la salida
-
-
-// bloque comparador 
-assign z=(B==0)?1:0;
 
 
 //bloques de registros de desplazamiento para A y B
