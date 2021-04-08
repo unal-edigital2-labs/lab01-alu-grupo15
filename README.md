@@ -65,7 +65,7 @@ A continuación, indicamos los registros y los Wire que se usarán en la impleme
 
 ![Dreg](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dreg.PNG)
 
-Antes de realizar la máquina de estados generamos los bloques de comparación, desplazamiento de los registros A y B, para esto si “rst” es 1, A toma el valor de 3 bits en 0 concatenados con el valor de MD, por otra parte se obtiene el complemento a 2 de B y se le asigna a “count” un valor de 3 ya que este indicara el final de la operación.  Finalmente se genera el bloque add. 
+Antes de realizar la máquina de estados generamos el bloque de desplazamiento de los registros A y B, para esto si “rst” es 1, A toma el valor de 3 bits en 0 concatenados con el valor de MD, por otra parte se obtiene el complemento a 2 de B y se le asigna a “count” un valor de 3 ya que este indicara el final de la operación.  Finalmente se genera el bloque add. 
 
 ![Dbloques](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/Dbloques.PNG)
 
