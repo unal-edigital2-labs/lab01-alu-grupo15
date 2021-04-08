@@ -34,12 +34,7 @@ reg rst;
 reg add;
 reg [5:0] A;
 reg [2:0] B;
-wire z;
-
 reg [2:0] status = 0;
-
-// bloque comparador 
-assign z=(B==0)?1:0;
 
 
 //bloques de registros de desplazamiento para A y B
