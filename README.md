@@ -80,6 +80,7 @@ Finalmente se da inicio a la máquina de estados finitos, que cuenta con 8 estad
 ![FSM3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/FSM3.PNG)
 
 MÚLTIPLICADOR
+
  Para realizar la multiplicación manejamos las mismas entradas y salidas que para la división, usamos MR y MD cómo los números que deseamos operar y “pp” cómo la variable donde se almacenará la respuesta. Posteriormente definimos los registros y los wire. 
  
  ![MULTI1](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI1.PNG)
