@@ -80,10 +80,29 @@ Finalmente se da inicio a la máquina de estados finitos, que cuenta con 8 estad
 ![FSM3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/2f6a582f00e4ee1c084cd066e151a50d8124d54a/fig/FSM3.PNG)
 
 MÚLTIPLICADOR
+ Para realizar la multiplicación manejamos las mismas entradas y salidas que para la división, usamos MR y MD cómo los números que deseamos operar y “pp” cómo la variable donde se almacenará la respuesta. Posteriormente definimos los registros y los wire. 
+ 
+ ![MULTI1](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI1.PNG)
+ 
+
+Realizamos el bloque comparador y posteriormente el bloque de desplazamiento encargado de dos cosas, la primera es asignarle a A la concatenación de 3 bits más MD con el objetivo de que al finalizar, el resultado de la operación cuente con 6 bits. En segundo lugar, el bloque debe mover A un bit hacia la izquierda y de mover B a la derecha cuando sea necesario. 
+
+ ![MULTI2](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI2.PNG)
+
+A continuación, se genera el bloque “Add pp” donde se indica que al reiniciar la operación pp debe tomar el valor de cero y cuando se le indique pp debe ser la suma de si mismo más A. 
+
+![MULTI3](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI3.PNG)
+
+Finalmente se definió la máquina de estados finitos, en la cual se definieron 5 estado cómo se muestra en el diagrama de flujo. 
+
+![MULTI4](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/79a233218adf96e85eb9207c3e169bfa58eac80f/fig/MULTI4.PNG)
+
+ 
  
 SUMA
 
  La suma es la operación más sencilla de la ALU, cómo en las otras se manejan 4 entradas y una salida, las entradas de 3 bits y la salida 6 bits.  En el posedge del clk una vez se indique mediante “init” que se va a operar una suma la salida toma el valor de la adición entre Xi y Yi. 
+ 
  ![SUMA](https://github.com/unal-edigital2/lab01-alu-grupo15/blob/7e92c211bced7ca8bc1c58deeff983fb2eb8ad16/fig/SUMA.PNG)
 
  
